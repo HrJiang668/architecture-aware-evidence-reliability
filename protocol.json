@@ -1,0 +1,52 @@
+{
+  "paper": "Architecture-Aware Evidence Reliability Estimation for Medical Object Detection",
+  "dataset_statistics": {
+    "USE": {
+      "train_images": 4256,
+      "train_boxes": 34595,
+      "val_images": 852,
+      "val_boxes": 5948,
+      "classes": 7,
+      "train_annotation_sha256": "c04bcf7689ce1d3bac4de846e32811a4bad5f6b19334b73a8838e8f04fc3943e",
+      "val_annotation_sha256": "39f89f13b1c38f5a6b4e6569ea01a92bd31930f4135be8c0345cae9f651c36cf"
+    },
+    "RSNA": {
+      "train_images": 25500,
+      "train_boxes": 9664,
+      "val_images": 4500,
+      "val_boxes": 1726,
+      "classes": 1,
+      "train_annotation_sha256": "d7656b91ddb18a25a9c28de7c8909887c0291db610aa4cf8b39b53c422cf0cb8",
+      "val_annotation_sha256": "8c8278959382330fc659af25e1f9f43d740759f918e95fb0332536a09a7c8a3e"
+    },
+    "ChestX-Det": {
+      "train_images": 2723,
+      "train_boxes": 7156,
+      "val_images": 302,
+      "val_boxes": 749,
+      "classes": 13,
+      "train_annotation_sha256": "ed162d9cd9e60761ea5085ec961f62ba429750612b3caf70fcd9e364ae44004c",
+      "val_annotation_sha256": "fde18cc0c722b7a862f512cfc7ebf24134d60d84ee6673169a1868190e732aec"
+    }
+  },
+  "candidate_matching": {
+    "class_consistent": true,
+    "one_to_one": true,
+    "iou_threshold": 0.5
+  },
+  "reliability_training": {
+    "detector_frozen": true,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "candidate_batch_size": 2048,
+    "epochs": 8,
+    "default_primary_seed": 20260812,
+    "calibration_split": "10% of training images, GroupShuffleSplit"
+  },
+  "evidence_export_defaults": {
+    "YOLO": {"image_size": 640, "candidate_score_threshold": 0.001, "nms_iou": 0.7, "max_detections": 300},
+    "Faster_R_CNN_RetinaNet": {"min_size": 640, "max_size": 1024, "candidate_score_threshold": 0.001},
+    "RF_DETR_Small": {"image_size": 512, "candidate_score_threshold": 0.001, "max_candidates": 100}
+  }
+}

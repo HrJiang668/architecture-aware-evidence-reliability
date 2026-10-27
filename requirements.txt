@@ -1,0 +1,10 @@
+numpy
+scikit-learn
+torch
+torchvision
+Pillow
+PyYAML
+opencv-python
+pycocotools
+ultralytics
+rfdetr
